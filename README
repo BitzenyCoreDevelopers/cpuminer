@@ -22,6 +22,17 @@ Notes for AIX users:
 	* GNU-style long options are not supported, but are accessible
 	  via configuration file
 
+Cross Compile for Windows, using Ubuntu
+	sudo apt-get install gcc-mingw-w64
+	cd cpuminer/depend
+	sh depend.sh
+	cd cpuminer
+	./autogen.sh
+LDFLAGS="-L depend/curl-7.38.0-devel-mingw64/lib64 -static" LIBCURL="-lcurldll" \
+CFLAGS="-O3 -msse4.1 -funroll-loops -fomit-frame-pointer" \
+./configure --host=x86_64-w64-mingw32 --with-libcurl=depend/curl-7.38.0-devel-mingw64 
+	make
+
 Basic Windows build instructions, using MinGW:
 	Install MinGW and the MSYS Developer Tool Kit (http://www.mingw.org/)
 		* Make sure you have mstcpip.h in MinGW\include
