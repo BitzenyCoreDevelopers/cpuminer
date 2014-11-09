@@ -28,9 +28,14 @@ Cross Compile for Windows, using Ubuntu
 	sh depend.sh
 	cd cpuminer
 	./autogen.sh
+(64bit)
 LDFLAGS="-L depend/curl-7.38.0-devel-mingw64/lib64 -static" LIBCURL="-lcurldll" \
 CFLAGS="-O3 -msse4.1 -funroll-loops -fomit-frame-pointer" \
-./configure --host=x86_64-w64-mingw32 --with-libcurl=depend/curl-7.38.0-devel-mingw64 
+./configure --host=x86_64-w64-mingw32 --with-libcurl=depend/curl-7.38.0-devel-mingw64
+(32bit)
+LDFLAGS="-L depend/curl-7.38.0-devel-mingw32/lib -static" LIBCURL="-lcurldll" \
+CFLAGS="-O3 -msse4.1 -funroll-loops -fomit-frame-pointer" \
+./configure --host=i686-w64-mingw32 --with-libcurl=depend/curl-7.38.0-devel-mingw32
 	make
 
 Basic Windows build instructions, using MinGW:
