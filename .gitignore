@@ -26,3 +26,5 @@ config.sub
 
 mingw32-config.cache
 
+deps/*
+!deps/build_*.sh
