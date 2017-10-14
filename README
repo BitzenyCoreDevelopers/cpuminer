@@ -22,21 +22,21 @@ Notes for AIX users:
 	* GNU-style long options are not supported, but are accessible
 	  via configuration file
 
-Cross Compile for Windows, using Ubuntu
-	sudo apt-get install gcc-mingw-w64
-	cd cpuminer/depend
-	sh depend.sh
-	cd cpuminer
-	./autogen.sh
-(64bit)
-LDFLAGS="-L depend/curl-7.38.0-devel-mingw64/lib64 -static" LIBCURL="-lcurldll" \
-CFLAGS="-O3 -msse4.1 -funroll-loops -fomit-frame-pointer" \
-./configure --host=x86_64-w64-mingw32 --with-libcurl=depend/curl-7.38.0-devel-mingw64
-(32bit)
-LDFLAGS="-L depend/curl-7.38.0-devel-mingw32/lib -static" LIBCURL="-lcurldll" \
-CFLAGS="-O3 -msse4.1 -funroll-loops -fomit-frame-pointer" \
-./configure --host=i686-w64-mingw32 --with-libcurl=depend/curl-7.38.0-devel-mingw32
+Cross Compile for Windows 64it, using Ubuntu
+
+	sudo apt-get install build-essential automake mingw-w64-x86-64-dev
+	git clone https://github.com/zenywallet/cpuminer.git
+	cd cpuminer/deps
+	./build_win_deps.sh
+	cd ..
+	autoreconf -fi -I./deps/x86_64-w64-mingw32/share/aclocal
+	./configure --host=x86_64-w64-mingw32 \
+	CFLAGS="-O3 -I./deps/x86_64-w64-mingw32/include -std=c99 -DWIN32 -DCURL_STATICLIB -DPTW32_STATIC_LIB" \
+	--with-libcurl=deps/x86_64-w64-mingw32 LDFLAGS="-L./deps/x86_64-w64-mingw32/lib -static"
 	make
+
+TRY: -Ofast -flto -march=native
+
 
 Basic Windows build instructions, using MinGW:
 	Install MinGW and the MSYS Developer Tool Kit (http://www.mingw.org/)
