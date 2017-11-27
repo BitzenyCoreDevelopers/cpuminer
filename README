@@ -25,7 +25,7 @@ Notes for AIX users:
 Cross Compile for Windows 64it, using Ubuntu
 
 	sudo apt-get install build-essential automake mingw-w64-x86-64-dev
-	git clone https://github.com/zenywallet/cpuminer.git
+	git clone https://github.com/BitzenyCoreDevelopers/cpuminer.git
 	cd cpuminer/deps
 	./build_win_deps.sh
 	cd ..
