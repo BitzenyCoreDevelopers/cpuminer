@@ -22,7 +22,7 @@ Notes for AIX users:
 	* GNU-style long options are not supported, but are accessible
 	  via configuration file
 
-Cross Compile for Windows 64it, using Ubuntu
+Cross Compile for Windows 64bit, using Ubuntu
 
 	sudo apt-get install build-essential automake mingw-w64-x86-64-dev
 	git clone https://github.com/BitzenyCoreDevelopers/cpuminer.git
