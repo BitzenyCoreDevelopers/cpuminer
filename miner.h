@@ -137,7 +137,7 @@ void sha256_transform(uint32_t *state, const uint32_t *block, int swap);
 void sha256d(unsigned char *hash, const unsigned char *data, int len);
 
 #ifdef USE_ASM
-#if defined(__ARM_NEON__) || defined(__i386__) || defined(__x86_64__)
+#if defined(__ARM_NEON__) || defined(__ALTIVEC__) || defined(__i386__) || defined(__x86_64__)
 #define HAVE_SHA256_4WAY 1
 int sha256_use_4way();
 void sha256_init_4way(uint32_t *state);
@@ -199,6 +199,7 @@ extern struct work_restart *work_restart;
 extern void applog(int prio, const char *fmt, ...);
 extern json_t *json_rpc_call(CURL *curl, const char *url, const char *userpass,
 	const char *rpc_req, int *curl_err, int flags);
+void memrev(unsigned char *p, size_t len);
 extern void bin2hex(char *s, const unsigned char *p, size_t len);
 extern char *abin2hex(const unsigned char *p, size_t len);
 extern bool hex2bin(unsigned char *p, const char *hexstr, size_t len);
